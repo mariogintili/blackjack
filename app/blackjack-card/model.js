@@ -20,7 +20,7 @@ export default DS.Model.extend({
     } else if (isMemberOfTheRoyalFamily) {
       return [10];
     } else {
-      parseInt(name);
+      return [ parseInt(name) ];
     }
   }),
 
@@ -28,6 +28,6 @@ export default DS.Model.extend({
 
   isMemberOfTheRoyalFamily: computed('name', function() {
     const royalMembers = ['J', 'Q', 'K'];
-    return royalMembers.includes(this.get('name'));
+    return royalMembers.indexOf(this.get('name')) !== -1;
   })
 });

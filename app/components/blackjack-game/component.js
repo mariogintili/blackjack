@@ -1,7 +1,7 @@
 import Ember from 'ember';
 
 const { service } = Ember.inject;
-const { get } = Ember;
+const { get, computed } = Ember;
 
 export default Ember.Component.extend({
   // Attrs
@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   dealerCards: [],
   deck: null,
 
-
+  // Hooks
   init() {
     this._super(...arguments);
 
@@ -32,6 +32,8 @@ export default Ember.Component.extend({
     ]);
   },
 
+
+  // Methods
   takeRandomCard() {
     const randIndex = this.randomizeIndex();
     const deck      = this.get('deck');
@@ -46,5 +48,20 @@ export default Ember.Component.extend({
     const deck       = this.get('deck');
     const deckLength = get(deck, 'length');
     return Math.floor(Math.random() * deckLength);
+  },
+
+
+  // CP
+  userCardsValue: computed('userCards', function() {
+    // select each cards value
+    // if any of those values constitutes more than one element, like an ACE
+    // determine all permutations of values,
+    // then select the one's closest to 21, but is less than 21
+    // const cardMultipleValues = cardValues.
+  }),
+
+  // Actions
+  actions: {
+
   }
 });
