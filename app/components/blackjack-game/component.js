@@ -8,6 +8,7 @@ export default Ember.Component.extend({
   store: service('store:main'),
   blackjackDeck: service(),
   userCards: [],
+  dealerCards: [],
   deck: [],
 
 
@@ -17,6 +18,13 @@ export default Ember.Component.extend({
     this.set('userCards', [
       this.takeRandomCard(),
       this.takeRandomCard(),
+    ]);
+
+    const randomCardToBeHidden = this.takeRandomCard();
+    randomCardToBeHidden.set('isHidden', true);
+    this.set('dealerCards', [
+      this.takeRandomCard(),
+      randomCardToBeHidden,
     ]);
   },
 

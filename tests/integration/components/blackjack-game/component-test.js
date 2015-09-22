@@ -8,8 +8,6 @@ moduleForComponent('blackjack-game', 'Integration | Component | blackjack game',
 test('it renders', function(assert) {
   assert.expect(2);
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
   this.render(hbs`{{blackjack-game}}`);
 
   assert.ok(this.$('.hit-me-btn').length, 'Shows a hit-me btn');
@@ -17,6 +15,17 @@ test('it renders', function(assert) {
 });
 
 test('It generates 2 cards for the user on start', function(assert) {
+  assert.expect(1);
+
   this.render(hbs`{{blackjack-game}}`);
   assert.equal(this.$('.user-card').length, 2, 'generates 2 cards for the user on start');
+});
+
+test('It generates 2 cards for the dealer', function(assert) {
+  assert.expect(2);
+
+  this.render(hbs`{{blackjack-game}}`);
+
+  assert.equal(this.$('.dealer-card').length, 1, 'Shows 1 card that is visible');
+  assert.equal(this.$('.dealer-cards > .hidden-placeholder').length, 1, 'Shows 1 card thats hidden');
 });

@@ -9,6 +9,9 @@ export default DS.Model.extend({
   name: DS.attr('string'),
   suite: DS.attr('string'),
 
+  // Virtual attrs
+  isHidden: null,
+
   // CPs
   values: computed('isAce', 'name', 'isMemberOfTheRoyalFamily', function() {
     const { isAce, name, isMemberOfTheRoyalFamily } = this.getProperties('isAce', 'name', 'isMemberOfTheRoyalFamily');

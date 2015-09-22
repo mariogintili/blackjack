@@ -1,12 +1,27 @@
+<div class="dealer-interface">
+  <div class="dealer-cards">
+    {{#each dealerCards as |dealerCard|}}
+      {{#if dealerCard.isHidden}}
+        <div class="hidden-placeholder"></div>
+      {{else}}
+        <div class="dealer-card">
+          <h4 class="card-name">{{dealerCard.name}}</h4>
+          <h4 class="card-suite">{{dealerCard.suite}}</h4>
+        </div>
+      {{/if}}
+    {{/each}}
+  </div>
+</div>
+
 <div class="user-interface">
   <div class="user-cards">
     {{#each userCards as |userCard|}}
       <div class="user-card">
-        <h4>{{userCard.name}}</h4>
-        <h4>{{userCard.suite}}</h4>
+        <h4 class="card-name">{{userCard.name}}</h4>
+        <h4 class="card-suite">{{userCard.suite}}</h4>
       </div>
     {{/each}}
   </div>
-  <button class="hit-me-btn">Hit me</button>
-  <button class="stick-btn">Stick</button>
+  <button class="hit-me-btn" {{action "hitMe"}}>Hit me</button>
+  <button class="stick-btn" {{action "stick"}}>Stick</button>
 </div>
