@@ -1,1 +1,12 @@
-{{yield}}
+<div class="user-interface">
+  <div class="user-cards">
+    {{#each userCards as |userCard|}}
+      <div class="user-card">
+        <h4>{{userCard.name}}</h4>
+        <h4>{{userCard.suite}}</h4>
+      </div>
+    {{/each}}
+  </div>
+  <button class="hit-me-btn">Hit me</button>
+  <button class="stick-btn">Stick</button>
+</div>

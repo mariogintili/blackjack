@@ -12,11 +12,11 @@ module('Acceptance | play blackjack', {
   }
 });
 
-test('visiting /play-blackjack', function(assert) {
-  visit('/play-blackjack');
+test('visiting /blackjack', function(assert) {
+  visit('/blackjack');
 
   andThen(() => {
-    assert.equal(currentURL(), '/play-blackjack', 'is a valid URL to visit');
-    assert.ok(find('.player-card').length, 2, 'shows 2 cards initially');
+    assert.equal(currentURL(), '/blackjack', 'is a valid URL to visit');
+    assert.ok(find('.user-card').length, 2, 'shows 2 cards initially');
   });
 });
