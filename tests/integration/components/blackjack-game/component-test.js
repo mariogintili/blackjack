@@ -24,7 +24,7 @@ test('It generates 2 cards for the user on start', function(assert) {
 test('It generates 2 cards for the dealer', function(assert) {
   assert.expect(2);
 
-  this.render(hbs`{{blackjack-game}}`);
+  this.render(hbs`{{blackjack-game deck}}`);
 
   assert.equal(this.$('.dealer-card').length, 1, 'Shows 1 card that is visible');
   assert.equal(this.$('.dealer-cards > .hidden-placeholder').length, 1, 'Shows 1 card thats hidden');

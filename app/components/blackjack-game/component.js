@@ -9,12 +9,16 @@ export default Ember.Component.extend({
   blackjackDeck: service(),
   userCards: [],
   dealerCards: [],
-  deck: [],
+  deck: null,
 
 
   init() {
     this._super(...arguments);
-    this.set('deck', this.get('blackjackDeck').buildDeck());
+
+    if (this.get('deck') === null) {
+      this.set('deck', this.get('blackjackDeck').buildDeck());
+    }
+
     this.set('userCards', [
       this.takeRandomCard(),
       this.takeRandomCard(),
