@@ -4,19 +4,6 @@ const { service } = Ember.inject;
 const { get, computed } = Ember;
 const TWENTY_ONE = 21;
 
-
-var calculatedBestScore = function(mappedValues) {
-  mappedValues.reduce((memo, currentArray) => {
-    if (currentArray.length > 1) {
-      const one = currentArray[0];
-      const ten = currentArray[1];
-      return (ten + memo) > TWENTY_ONE ? one + memo : ten + memo;
-    } else {
-      return memo + currentArray;
-    }
-  });
-};
-
 var calculatedScoreFor = function(key) {
   return computed(key, `${key}.[]`, function() {
     const mappedValues    = this.get(key).mapBy('values');
@@ -120,7 +107,7 @@ export default Ember.Component.extend({
     handleUserAction(actionToDispatch) {
       const { dealerHasShownHisCard, dealerCards } = this.getProperties('dealerHasShownHisCard', 'dealerCards');
 
-      if (!this.get('dealerHasShownHisCard')) {
+      if (!dealerHasShownHisCard) {
         dealerCards.forEach(card => card.set('isHidden', false));
       }
 
