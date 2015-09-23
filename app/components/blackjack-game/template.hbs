@@ -1,3 +1,9 @@
+<div class="game-announcements">
+  {{#if gameIsFinished}}
+    <h1 class="finish-announcement">{{gameFinishedMessage}}</h1>
+  {{/if}}
+</div>
+
 <div class="interface dealer">
   <h1>The Dealer</h1>
   <div class="dealer-cards">
@@ -16,7 +22,7 @@
     {{/each}}
     <div class="actions-container">
       {{#if dealerHasShownHisCard}}
-        <p class="computed-dealer-score">{{dealerScore}}</p>
+        <p class="computed-dealer-score">{{dealerHandScore}}</p>
       {{/if}}
     </div>
   </div>
@@ -33,8 +39,12 @@
     {{/each}}
   </div>
   <div class="actions-container">
-    <button class="hit-me-btn" {{action "handleUserAction" "hitMe"}}>Hit me</button>
-    <button class="stick-btn" {{action "handleUserAction" "stick"}}>Stick</button>
+    {{#if gameIsFinished}}
+      <button class="restart" {{action "restart"}}>Restart</button>
+    {{else}}
+      <button class="hit-me-btn" {{action "handleUserAction" "hitMe"}}>Hit me</button>
+      <button class="stick-btn" {{action "handleUserAction" "stick"}}>Stick</button>
+    {{/if}}
     <p class="computed-user-score">{{userHandScore}}</p>
   </div>
 </div>
