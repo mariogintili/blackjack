@@ -11,16 +11,16 @@
   text-align: center;
 }
 
-.user-interface {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.dealer-interface {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .actions-container {
   padding: 20px;
+}
+
+.blackjack-game {
+  display: flex;
+  padding: 50px;
+}
+
+.interface {
+  padding: 20px;
+  flex: 1;
 }

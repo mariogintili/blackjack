@@ -3,13 +3,31 @@ import Ember from 'ember';
 const { service } = Ember.inject;
 const { get, computed } = Ember;
 
+var calculatedScoreFor = function(key) {
+  return computed(key, function() {
+    const mappedValues    = this.get(key).mapBy('values');
+    const aces            = mappedValues.filter((array) => array.length > 1);
+    if (aces.length) {
+      return 'there was an ACE!';
+    } else {
+      return mappedValues.map(array => array[0]).reduce((memo, current) => {
+        return memo + current;
+      });
+    }
+  });
+};
+
 export default Ember.Component.extend({
   // Attrs
+  classNames: ['blackjack-game'],
   store: service('store:main'),
   blackjackDeck: service(),
   userCards: [],
   dealerCards: [],
   deck: null,
+  dealerHasShownHisCard: computed('dealerCards.@each.isHidden', function() {
+    return !this.get('dealerCards').filterBy('isHidden').length;
+  }),
 
   // Hooks
   init() {
@@ -51,17 +69,23 @@ export default Ember.Component.extend({
   },
 
 
-  // CP
-  userCardsValue: computed('userCards', function() {
-    // select each cards value
-    // if any of those values constitutes more than one element, like an ACE
-    // determine all permutations of values,
-    // then select the one's closest to 21, but is less than 21
-    // const cardMultipleValues = cardValues.
-  }),
+  // CPs
+  userHandScore: calculatedScoreFor('userCards'),
+
+  dealerScore: calculatedScoreFor('dealerCards'),
 
   // Actions
   actions: {
 
+
+    handleUserAction(actionToDispatch) {
+      const { dealerHasShownHisCard, dealerCards } = this.getProperties('dealerHasShownHisCard', 'dealerCards');
+
+      if (!this.get('dealerHasShownHisCard')) {
+        dealerCards.forEach(card => card.set('isHidden', false));
+      }
+
+      this.send(actionToDispatch);
+    }
   }
 });

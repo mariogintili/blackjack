@@ -1,4 +1,4 @@
-<div class="dealer-interface">
+<div class="interface dealer">
   <h1>The Dealer</h1>
   <div class="dealer-cards">
     {{#each dealerCards as |dealerCard|}}
@@ -14,10 +14,15 @@
         </div>
       {{/if}}
     {{/each}}
+    <div class="actions-container">
+      {{#if dealerHasShownHisCard}}
+        <p class="computed-dealer-score">{{dealerScore}}</p>
+      {{/if}}
+    </div>
   </div>
 </div>
 
-<div class="user-interface">
+<div class="interface user">
   <h1>You</h1>
   <div class="user-cards">
     {{#each userCards as |userCard|}}
@@ -28,8 +33,8 @@
     {{/each}}
   </div>
   <div class="actions-container">
-    <button class="hit-me-btn" {{action "hitMe"}}>Hit me</button>
-    <button class="stick-btn" {{action "stick"}}>Stick</button>
-    <p class="computed-user-score">{{computedUserScore}}</p>
+    <button class="hit-me-btn" {{action "handleUserAction" "hitMe"}}>Hit me</button>
+    <button class="stick-btn" {{action "handleUserAction" "stick"}}>Stick</button>
+    <p class="computed-user-score">{{userHandScore}}</p>
   </div>
 </div>
