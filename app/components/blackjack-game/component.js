@@ -65,6 +65,10 @@ export default Ember.Component.extend({
       this.takeRandomCard(),
       randomCardToBeHidden,
     ]);
+
+    if (this.get('gameIsFinished')) {
+      this.init();
+    }
   },
 
 
